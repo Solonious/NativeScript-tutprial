@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { User } from "../../shared/user/user";
 import { UserService } from "../../shared/user/user.service";
@@ -13,7 +14,10 @@ export class LoginComponent {
     user: User;
     email = 'sergeysolonar@gmail.com';
     isLoggingIn = true;
-    constructor(private userService: UserService) {
+    constructor(
+        private userService: UserService,
+        private router: Router
+    ) {
         this.user = new User();
         this.user.email = 'test.email@gmail.com';
         this.user.password = 'password';
@@ -26,7 +30,11 @@ export class LoginComponent {
         }
     }
     login() {
-        //TODO
+        this.userService.login(this.user)
+            .subscribe(
+                () => this.router.navigate(["/list"]),
+                (error) => alert("Unfortunately we could not find your account.")
+            );
     }
     signUp() {
         this.userService.register(this.user)
