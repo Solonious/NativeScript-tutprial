@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var user_1 = require("./shared/user/user");
 var AppComponent = (function () {
     function AppComponent() {
         this.email = 'sergeysolonar@gmail.com';
         this.isLoggingIn = true;
+        this.user = new user_1.User();
     }
     AppComponent.prototype.submit = function () {
         alert("email " + this.email);
@@ -17,8 +19,9 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: "my-app",
-        template: "\n        <StackLayout>\n\t        <Image src=\"res://logo_login\" stretch=\"none\" horizontalAlignment=\"center\"></Image>\n\t        <TextField hint=\"Email Address\" keyboardType=\"email\" [(ngModel)]=\"email\"\n\t                   autocorrect=\"false\" autocapitalizationType=\"none\"></TextField>\n\t        <TextField hint=\"Password\" secure=\"true\"></TextField>\n\n\t        <Button [text]=\"isLoggingIn ? 'Sign In' : 'Sign Up'\" \n                    class=\"submit-button\"\n                    (tap)=\"submit()\"\n            ></Button>\n\t        <Button [text]=\"isLoggingIn ? 'Sign Up' : 'Back to login'\" (tap)=\"toggleDisplay()\"></Button>\n        </StackLayout>\n    ",
+        templateUrl: './pages/login/login.html',
         styleUrls: ['pages/login/login-common.css', 'pages/login/login.css']
-    })
+    }),
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 exports.AppComponent = AppComponent;
